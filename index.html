@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MOBO | الظلام المطلق</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&display=swap" rel="stylesheet">
+    <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+</head>
+<body>
+    <!-- خلفية النجوم -->
+    <div id="stars-bg" class="stars-bg"></div>
+    <div class="moving-lights">
+        <div class="light"></div>
+        <div class="light"></div>
+        <div class="light"></div>
+        <div class="light"></div>
+        <div class="light"></div>
+    </div>
+
+    <!-- شاشة تسجيل الدخول -->
+    <div id="login-screen" class="screen active">
+        <div class="login-container">
+            <div class="site-logo">
+                <div class="logo-glow"></div>
+                <div class="logo-image">🖤</div>
+                <h1 class="logo-text">MOBO</h1>
+                <p class="logo-subtitle">الظلام المطلق • حيث تسكن القوة</p>
+            </div>
+            
+            <div class="login-options">
+                <div class="glass-card">
+                    <h3>🔐 الدخول للهاوية</h3>
+                    <div class="input-group">
+                        <input type="text" id="login-username" class="modern-input" placeholder="اسم المستخدم">
+                        <input type="password" id="login-password" class="modern-input" placeholder="كلمة المرور">
+                    </div>
+                    <button class="modern-btn" onclick="loginWithCredentials()">دخول</button>
+                </div>
+                
+                <div class="glass-card">
+                    <h3>⚔️ إنشاء كيان جديد</h3>
+                    <div class="input-group">
+                        <input type="text" id="new-username" class="modern-input" placeholder="اسم المستخدم الجديد">
+                        <input type="password" id="new-password" class="modern-input" placeholder="كلمة المرور">
+                        <select id="user-gender" class="modern-input">
+                            <option value="male">ذكر</option>
+                            <option value="female">أنثى</option>
+                        </select>
+                    </div>
+                    <button class="modern-btn" onclick="createAccount()">انضمام للعتمة</button>
+                </div>
+            </div>
+
+            <div class="copyright-notice">
+                <strong>© 2025 MOBO</strong> - جميع الحقوق محفوظة. النسخة السوداء المطلقة.
+            </div>
+        </div>
+    </div>
+
+    <!-- شاشة الدردشة -->
+    <div id="chat-screen" class="screen">
+        <div class="chat-container">
+            <header class="chat-header">
+                <div class="header-left">
+                    <div class="header-logo">
+                        <div class="header-logo-image">🖤</div>
+                        <div>
+                            <h1>MOBO</h1>
+                            <div id="room-info" class="room-info">الغرفة العالمية</div>
+                        </div>
+                    </div>
+                    <div class="user-status">
+                        <span>المستخدم: <strong id="current-user"></strong></span>
+                        <div id="user-badges" class="message-badges"></div>
+                    </div>
+                </div>
+                <div class="header-right">
+                    <button class="modern-btn small" onclick="toggleUsersList()">👥 المتصلون</button>
+                    <button id="admin-panel-btn" class="modern-btn small" onclick="showAdminPanel()" style="display: none;">🛡️ الإدارة</button>
+                    <button class="modern-btn small" onclick="logout()">🚪 خروج</button>
+                </div>
+            </header>
+
+            <div class="chat-main">
+                <div class="chat-content">
+                    <div id="messages" class="chat-messages custom-scrollbar">
+                        <div class="welcome-message">
+                            <h3>مرحباً بك في الظلام</h3>
+                            <p>اختر غرفة وابدأ المحادثة بأمان تام.</p>
+                        </div>
+                    </div>
+                    <div class="chat-tools">
+                        <form id="message-form" class="message-form">
+                            <input type="text" id="message-input" class="message-input custom-scrollbar" placeholder="اكتب رسالتك هنا..." disabled>
+                            <button type="submit" class="modern-btn" disabled>إرسال ⚡</button>
+                        </form>
+                    </div>
+                </div>
+
+                <aside id="users-sidebar" class="users-sidebar custom-scrollbar">
+                    <div class="sidebar-header">
+                        <h3>المتصلون</h3>
+                    </div>
+                    <div id="users-list" class="users-list">
+                        <div class="no-users">جاري التحميل...</div>
+                    </div>
+                </aside>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
